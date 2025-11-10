@@ -14,3 +14,17 @@ function getComputerChoice() {
     return "scissors" ;
 }
 console.log(getComputerChoice());
+
+/*
+getHumanChoice()
+1. Ask the user to type "rock", "paper", or "scissors" using prompt()
+2. Convert the input to lowercase
+3. Return the user's choice
+4. (Assume user always types a valid option)
+*/
+
+function getHumanChoice(){
+    const choice = prompt ("Enter rock, paper, scissors:");
+    return choice.toLowerCase();
+}
+console.log("Human choice:", getHumanChoice())
