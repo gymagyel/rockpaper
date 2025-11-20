@@ -23,6 +23,7 @@ const resultsDiv = document.querySelector('#results')
 
 let playerScore = 0;
 let computerScore = 0;
+let gameOver = false;
 
 
 const scoreDiv = document.querySelector('#score')
@@ -53,13 +54,14 @@ if (playerWins) {
   computerScore++;
   resultsDiv.textContent = `You lose! ${computerSelection} beat ${playerSelection}!`;
 }
-}
 scoreDiv.textContent = `Score - You ${playerScore} | Computer: ${computerScore}`;
 
 if (playerScore === 5 || computerScore === 5) {
   gameOver = true;
-} 
+if (playerScore === 5){
   resultsDiv.textContent = ` You won the game! Final score: You: ${playerScore} | Computer: ${computerScore}`
- {
+}else {
   resultsDiv.textContent = `You lost the Game. Final score: You: ${playerScore} | Computer: ${computerScore}`
+}
+}
 }
