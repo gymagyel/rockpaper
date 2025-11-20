@@ -27,6 +27,11 @@ function getHumanChoice(){
     const choice = prompt ("Enter rock, paper, scissors:");
     return choice.toLowerCase();
 }
+const rockBtn = document.querySelector('#rock');
+const paperBtn = document.querySelector('#paper')
+const scissorsBtn = document.querySelector('#scissors')
+const resultsDiv = document.querySelector('#results')
+
 
 /*
 Declare score variables
@@ -79,14 +84,7 @@ Each time, you’ll get a new humanChoice and computerChoice, play a round, and 
 
 Declare the winner after the loop finishes.
 */
- // Play 5 rounds
-  for (let i = 1; i <= 5; i++) {
-    console.log(`Round ${i}`);
-    const humanChoice = getHumanChoice();
-    const computerChoice = getComputerChoice();
-    playRound(humanChoice, computerChoice);
-    
-  }
+
 
   // Final result
   if (humanScore > computerScore) {
