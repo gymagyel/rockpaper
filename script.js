@@ -15,86 +15,34 @@ function getComputerChoice() {
 }
 
 
-/*
-getHumanChoice()
-1. Ask the user to type "rock", "paper", or "scissors" using prompt()
-2. Convert the input to lowercase
-3. Return the user's choice
-4. (Assume user always types a valid option)
-*/
 
-function getHumanChoice(){
-    const choice = prompt ("Enter rock, paper, scissors:");
-    return choice.toLowerCase();
-}
 const rockBtn = document.querySelector('#rock');
 const paperBtn = document.querySelector('#paper')
 const scissorsBtn = document.querySelector('#scissors')
 const resultsDiv = document.querySelector('#results')
 
+rockBtn.addEventListener('click',() => 
+  playRound( "rock"));
+paperBtn.addEventListener('click' ,() => 
+  playRound("paper"))
+scissorsBtn.addEventListener( 'click' ,() => 
+  playRound("scissors"))
 
-/*
-Declare score variables
-1. Create two variables in the global scope: humanScore and computerScore
-2. Initialize both to 0
-3. These will be updated later as the game progresses
-*/
 
-function playGame() {
-
-    let humanScore= 0;
-    let computerScore = 0;
-/*
-playRound(humanChoice, computerChoice)
-1. Convert humanChoice to lowercase (make it case-insensitive)
-2. Compare humanChoice and computerChoice:
-   - If both are the same → it's a tie
-   - If human beats computer → log "You win!" message and increment humanScore
-   - Else → log "You lose!" message and increment computerScore
-3. Display the choices and current score using console.log
-*/
-
-function playRound(humanChoice, computerChoice) {
-    humanChoice = humanChoice.toLowerCase();
-
-    if (humanChoice === computerChoice) {
-        console.log("Its a tie! Both choose "+ humanChoice);
-    } else if(
-        (humanChoice === "rock" && computerChoice === "scissors") ||
-        (humanChoice === "paper" && computerChoice === "rock") ||
-        (humanChoice === "scissors" && computerChoice === "paper")
-    ) {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-        humanScore++;
-    } else {
-        console.log (`You lose! ${computerChoice} beats ${humanChoice}`);
-        computerScore++;
-    }
-    console.log ( `Score - Human: ${humanScore}, Computer: ${computerScore}`);
+function playRound(playerSelection) {
+  const computerSelection = getComputerChoice ();
+  if (playerSelection === computerSelection){
+    resultsDiv.textContent = `It's a tie. You both choose ${playerSelection}`;
+  return;
 }
+const playerWins =
+(playerSelection === "rock" && computerSelection === "scissors") ||
+(playerSelection === "paper" && computerSelection === "rock") ||
+(playerSelection === "scissors" && computerSelection === "paper") ;
+if (playerWins) {
+  resultsDiv.textContent = `You win! ${playerSelection} beats ${computerSelection}!`;
 
-/*
-Define playGame()
-This function will run the entire 5-round game.
-
-Move playRound() and the score variables inside it.
-
-Loop 5 times
-Each time, you’ll get a new humanChoice and computerChoice, play a round, and update scores.
-
-Declare the winner after the loop finishes.
-*/
-
-
-  // Final result
-  if (humanScore > computerScore) {
-    console.log(`🏆 You win the game! Final score: ${humanScore} - ${computerScore}`);
-  } else if (computerScore > humanScore) {
-    console.log(`💻 Computer wins the game! Final score: ${computerScore} - ${humanScore}`);
-  } else {
-    console.log(`🤝 It's a tie overall! Final score: ${humanScore} - ${computerScore}`);
-  }
-
+} else {
+  resultsDiv.textContent = `You lose! ${computerSelection} beat ${playerSelection}!`;
 }
-// Start the game
-playGame();
+}
